@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Eclipse configuration for ePages</title>
+</head>
+<body>
+
+<h1>Eclipse Configuration for ePages</h1>
+
+<h2>Prerequisite</h2>
+
+<p>You should have the latest Eclipse (3.4 or later) containing EPIC (0.6.35 or later) installed and running.
+You should also have a recent version of ePages (6.9 or later) installed on your computer.
+</p>
+
+<h2>Installation</h2>
+
+<p>This distribution contains an Eclipse project with a set of commonly used ePages tools prepared
+for you to use as "External Tools" in Eclipse. Some of them take
+parameters, some of them don't. Fortunately, all you need to do to
+add these tools, is place this project in your workspace.
+</p>
+
+<p>Here's a list of what is currently included in our distribution:</p>
+
+<ul>
+<li> epages6 checkJSSyntax - calls DE_EPAGES/Presentation/Scripts/checkJSSyntax.pl</li>
+<li> epages6 checkLanguageTags - calls DE_EPAGES/Presentation/Scripts/checkLanguageTags.pl</li>
+<li> epages6 checkUnusedFiles - calls DE_EPAGES/Presentation/Scripts/checkUnusedFiles.pl</li>
+<li> epages6 clearPageCache - calls DE_EPAGES/Object/Scripts/clearPageCache.pl</li>
+<li> epages6 compileTemplate - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</li>
+<li> epages6 copyCartridgeData - calls DE_EPAGES/Installer/Scripts/copyCartridgeData.pl</li>
+<li> epages6 createCartridge - calls DE_EPAGES/Cartridge/Scripts/CreateCartridge.pl</li>
+<li> epages6 createCtmpls - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</li>
+<li> epages6 deleteCtmpls - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl with options -delete</li>
+<li> epages6 deleteObject (Using File) - calls DE_EPAGES/Object/Scripts/delete.pl using selected file as input</li>
+<li> epages6 deleteObject (Using Path) - calls DE_EPAGES/Object/Scripts/delete.pl using a path prompt</li>
+<li> epages6 deleteHook - calls DE_EPAGES/Trigger/Scripts/delete.pl </li>
+<li> epages6 exportShop - calls DE_EPAGES/Object/Scripts/export.pl -withdefaults -withoutguids -withoutcreationdate </li>
+<li> epages6 findUseProblems (Write Cache File) - calls DE_EPAGES/XML/Scripts/findUseProblems.pl to create EXPORTS-API Cache File</li>
+<li> epages6 importHook - calls DE_EPAGES/Trigger/Scripts/import.pl </li>
+<li> epages6 importObject - calls DE_EPAGES/Object/Scripts/import.pl </li>
+<li> epages6 PerlCritic - calls DE_EPAGES/Core/Scripts/critic.pl</li>
+<li> epages6 RefactorPerlCritic (*) - calls DE_EPAGES/Core/Scripts/refactor.pl</li>
+<li> epages6 setAttribute - calls DE_EPAGES/Object/Scripts/set.pl </li>
+<li> epages6 setJSDebugLevel - calls DE_EPAGES/Object/Scripts/set.pl </li>
+<li> epages6 setMaxFeature - calls DE_EPAGES/Shop/Scripts/setMaxFeature.pl</li>
+<li> epages6 setShopWizardFlag (DemoShop) - calls DE_EPAGES/Object/Scripts/set.pl </li>
+<li> epages6 StoreCacheReset - calls DE_EPAGES/WebInterface/Scripts/StoreCacheReset.pl</li>
+<li> make [target] - generic make call with popup for make target. </li>
+<li> make restart - restarts ePages application server</li>
+<li> make generate - calls code generator</li>
+<li> make install - installs cartridge</li>
+<li> make register - registers cartridge features</li>
+<li> make uninstall - uninstalls cartridge</li>
+<li> make uninstall install - reinstalls cartridge</li>
+<li> make unregister - removes feature registrations</li>
+<li> perlRun - calls perl to run a .pl file</li>
+<li> perlProfile - calls perl -d:NYTProf on a .pl file</li>
+</ul>
+
+<p>After adding this project to your Eclipse workspace, you should see something like in this screenshot.</p>
+<p>
+<img src="external_launches_screen.jpg" alt="Eclipse External Tools" title="Eclipse External Tools" />
+</p>
+
+<p>The scripts are designed to be plaform independent. So,
+some variables need to be set to point to the correct executables.
+You have to create Eclipse substitutions for <tt>PERL</tt>,
+<tt>MAKE</tt> and set a replacement for <tt>COMPANY</tt>, like shown in the sccrenshot.
+</p>
+
+<p>Some of the scripts rely on an environment variable called <tt>EPAGES_TESTSITE</tt>. You should
+assign it, e.g. to your demo site <tt>Store</tt>.
+</p>
+
+<p>
+<img src="config_string_substitution.jpg" alt="Eclipse settings" title="Eclipse settings" />
+</p>
+
+
+<p>
+We also have a list of perl code templates. If you want to add these,
+go to the EPIC Editor Templates, and click on "Import".
+<br/><br/>
+<img src="config_code_templates.jpg" alt="Import code templates" title="import code templates" /> 
+</p>
+<p>Select <tt>perl_templates.xml</tt> from your EclipseConfig project.</p>
+<p><img src="config_template_select.jpg" alt="selecting templates.xml" title="selecting templates.xml" /> 
+
+</p>
+<h2>Perl::Critic</h2>
+
+<p>We encourage you to use Perl::Critic to enforce clean perl code. To use ePages default settings, 
+set the environment variable <tt>PERLCRITIC</tt> to point to <tt>$ENV{EPAGES_CARTRIDGES}/Core/Scripts/perlcritic_hard.conf</tt>.
+We have also provided an extended Perl::Critic configuration that even includes informational messages in <tt>perlcritic_hard_ide.conf</tt>.
+You may place this file into your project root folder, name it <tt>.perlcriticrc</tt>, and adapt it to your needs.</p>
+
+<p>To enable some additional Perl::Critic rules defined by ePages, you have to add 
+<tt>.../DE_EPAGES/Core/Scripts</tt> and <tt>.../DE_EPAGES/XML/Scripts</tt> to your <tt>PERL5LIB</tt> environment variable.</p>
+<p>
+See the following screenshot for the configuration settings of Perl::Critic in Eclipse.
+<br/><br/>
+<img src="config_perlcritic.jpg" alt="Perlcritic config" title="Perlcritic config" />
+</p>
+<p>
+</p>
+
+<h2>PerlTidy</h2>
+<p>ePages uses the following line of PerlTidy settings. Feel free to use this as a starting point, name it <tt>.perltidyrc</tt> and
+place it in your project root folder.</p>
+<pre>
+-st -se -ibc -i=4 -cti=0  -sot -ndws -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq -l=160
+-wbb="% + - * / x != == >= <= =~ !~ &lt; &gt; | &amp; = **= += *= &= &lt;&lt;= &&= -= /= |= >>= ||= //= .= %= ^= x="
+</pre>
+
+<h2>Last Modification</h2>
+<p>February 15th, 2011 by <a href="mailto:training@epages.com">ePages Training Department</a>.</p>
+
+</body>
+</html>
