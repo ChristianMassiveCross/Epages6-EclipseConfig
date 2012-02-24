@@ -6,5 +6,4 @@
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${PERL}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="${env_var:EPAGES_CARTRIDGES}/DE_EPAGES/Installer/Scripts/buildPartnerCartridgePatch.pl -oldrelease ${string_prompt:CVS tag old_release:release_} -newrelease ${string_prompt:CVS tag newrelease:release_} -company ${string_prompt:company:} -cartridge ${string_prompt:cartridge (without company):}"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="${resource_loc}"/>
 </launchConfiguration>

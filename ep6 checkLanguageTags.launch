@@ -3,5 +3,5 @@
 <booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE" value="${none}"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${PERL}"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="${env_var:EPAGES_CARTRIDGES}/DE_EPAGES/Presentation/Scripts/checkLanguageTags.pl -storename ${string_prompt:STORE=:${env_var:EPAGES_TESTSITE}}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="${env_var:EPAGES_CARTRIDGES}/DE_EPAGES/Presentation/Scripts/checkLanguageTags.pl -storename ${string_prompt:STORE=:${env_var:EPAGES_TESTSITE}} -lang ${string_prompt:-lang:en}"/>
 </launchConfiguration>

@@ -11,7 +11,7 @@
 <h2>Prerequisite</h2>
 
 <p>You should have the latest Eclipse (3.4 or later) containing EPIC (0.6.35 or later) installed and running.
-You should also have a recent version of ePages (6.9 or later) installed on your computer.
+You should also have a recent version of ePages (6.11 or later) installed on your computer.
 </p>
 
 <h2>Installation</h2>
@@ -19,46 +19,328 @@ You should also have a recent version of ePages (6.9 or later) installed on your
 <p>This distribution contains an Eclipse project with a set of commonly used ePages tools prepared
 for you to use as "External Tools" in Eclipse. Some of them take
 parameters, some of them don't. Fortunately, all you need to do to
-add these tools, is place this project in your workspace.
+add these tools, is place this project in your Eclipse workspace.
 </p>
 
 <p>Here's a list of what is currently included in our distribution:</p>
 
-<ul>
-<li> epages6 checkJSSyntax - calls DE_EPAGES/Presentation/Scripts/checkJSSyntax.pl</li>
-<li> epages6 checkLanguageTags - calls DE_EPAGES/Presentation/Scripts/checkLanguageTags.pl</li>
-<li> epages6 checkUnusedFiles - calls DE_EPAGES/Presentation/Scripts/checkUnusedFiles.pl</li>
-<li> epages6 clearPageCache - calls DE_EPAGES/Object/Scripts/clearPageCache.pl</li>
-<li> epages6 compileTemplate - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</li>
-<li> epages6 copyCartridgeData - calls DE_EPAGES/Installer/Scripts/copyCartridgeData.pl</li>
-<li> epages6 createCartridge - calls DE_EPAGES/Cartridge/Scripts/CreateCartridge.pl</li>
-<li> epages6 createCtmpls - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</li>
-<li> epages6 deleteCtmpls - calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl with options -delete</li>
-<li> epages6 deleteObject (Using File) - calls DE_EPAGES/Object/Scripts/delete.pl using selected file as input</li>
-<li> epages6 deleteObject (Using Path) - calls DE_EPAGES/Object/Scripts/delete.pl using a path prompt</li>
-<li> epages6 deleteHook - calls DE_EPAGES/Trigger/Scripts/delete.pl </li>
-<li> epages6 exportShop - calls DE_EPAGES/Object/Scripts/export.pl -withdefaults -withoutguids -withoutcreationdate </li>
-<li> epages6 findUseProblems (Write Cache File) - calls DE_EPAGES/XML/Scripts/findUseProblems.pl to create EXPORTS-API Cache File</li>
-<li> epages6 importHook - calls DE_EPAGES/Trigger/Scripts/import.pl </li>
-<li> epages6 importObject - calls DE_EPAGES/Object/Scripts/import.pl </li>
-<li> epages6 PerlCritic - calls DE_EPAGES/Core/Scripts/critic.pl</li>
-<li> epages6 RefactorPerlCritic (*) - calls DE_EPAGES/Core/Scripts/refactor.pl</li>
-<li> epages6 setAttribute - calls DE_EPAGES/Object/Scripts/set.pl </li>
-<li> epages6 setJSDebugLevel - calls DE_EPAGES/Object/Scripts/set.pl </li>
-<li> epages6 setMaxFeature - calls DE_EPAGES/Shop/Scripts/setMaxFeature.pl</li>
-<li> epages6 setShopWizardFlag (DemoShop) - calls DE_EPAGES/Object/Scripts/set.pl </li>
-<li> epages6 StoreCacheReset - calls DE_EPAGES/WebInterface/Scripts/StoreCacheReset.pl</li>
-<li> make [target] - generic make call with popup for make target. </li>
-<li> make restart - restarts ePages application server</li>
-<li> make generate - calls code generator</li>
-<li> make install - installs cartridge</li>
-<li> make register - registers cartridge features</li>
-<li> make uninstall - uninstalls cartridge</li>
-<li> make uninstall install - reinstalls cartridge</li>
-<li> make unregister - removes feature registrations</li>
-<li> perlRun - calls perl to run a .pl file</li>
-<li> perlProfile - calls perl -d:NYTProf on a .pl file</li>
-</ul>
+<dd>
+
+<dl>
+<dt>ep6 buildCartridgePatch</dt>
+<dd>calls DE_EPAGES/Installer/Scripts/buildCartridgePatch.pl</dd>
+<dd>usage: creation of patch files for DE_EPAGES based cartridges</dd>
+</dl>
+
+<dl>
+<dt>ep6 buildPartnerCartridgePatch</dt>
+<dd>calls DE_EPAGES/Installer/Scripts/buildPartnerCartridgePatch.pl</dd>
+<dd>usage: creation of patch files for partner cartridges</dd>
+</dl>
+
+<dl>
+<dt>ep6 checkJSSyntax</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/checkJSSyntax.pl</dd>
+<dd>usage: checks javascript syntax</dd>
+<dd>context: single file</dd>
+</dl>
+
+<dl>
+<dt>ep6 checkLanguageTags</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/checkLanguageTags.pl</dd>
+<dd>usage: checks unused and untranslated language tags</dd>
+<dd>context: Store</dd>
+</dl>
+
+<dl>
+<dt>ep6 checkUnusedFiles</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/checkUnusedFiles.pl</dd>
+<dd>usage: checks unused xml and html files</dd>
+<dd>context: Store</dd>
+</dl>
+
+<dl>
+<dt>ep6 clearPageCache</dt>
+<dd>calls DE_EPAGES/Object/Scripts/clearPageCache.pl</dd>
+<dd>usage: clears the page cache and template cache for an object</dd>
+<dd>context: object path</dd>
+</dl>
+
+<dl>
+<dt>ep6 compileTemplate (Single File)</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</dd>
+<dd>usage: creates ctmpl version of template file</dd>
+<dd>context: single file</dd>
+</dl>
+
+<dl>
+<dt>ep6 compileTemplates (Cartridge)</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl</dd>
+<dd>usage: creates ctmpl versions for all templates of one store, or one single cartridge</dd>
+<dd>context: cartridge or Store</dd>
+</dl>
+
+<dl>
+<dt>ep6 copyCartridgeData</dt>
+<dd>calls DE_EPAGES/Installer/Scripts/copyCartridgeData.pl</dd>
+<dd>usage: copies files from Data directory into Shared</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>ep6 createCartridge</dt>
+<dd>calls DE_EPAGES/Cartridge/Scripts/CreateCartridge.pl</dd>
+<dd>usage: creates a new cartridge based on a cartridge template</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>ep6 deleteCtmpls</dt>
+<dd>calls DE_EPAGES/Presentation/Scripts/createCtmpls.pl with option -delete</dd>
+<dd>usage: deletes ctmpl versions for all templates of one store, or one single cartridge</dd>
+<dd>context: cartridge or Store</dd>
+</dl>
+
+<dl>
+<dt>ep6 deleteObject (Using File)</dt>
+<dd>calls DE_EPAGES/Object/Scripts/delete.pl using selected file as input</dd>
+<dd>usage: deletes objects from database where XML file contains delete="1" attribute</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>ep6 deleteObject (Using Path)</dt>
+<dd>calls DE_EPAGES/Object/Scripts/delete.pl prompting for an object path to delete</dd>
+<dd>usage: deletes objects from database matching object path in prompt</dd>
+<dd>context: prompt</dd>
+</dl>
+
+<dl>
+<dt>ep6 deleteHook</dt>
+<dd>calls DE_EPAGES/Trigger/Scripts/delete.pl using selected file as input</dd>
+<dd>usage: deletes Hooks from database where XML file contains delete="1" attribute</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>ep6 exportShop</dt>
+<dd>calls DE_EPAGES/Object/Scripts/export.pl -withdefaults -withoutguids -withoutcreationdate</dd>
+<dd>usage: exports one shop as xml file, saving contents into $TEMP dir</dd>
+<dd>context: shop</dd>
+</dl>
+
+<dl>
+<dt>ep6 findUseProblems (Write Cache File)</dt>
+<dd>calls DE_EPAGES/XML/Scripts/findUseProblems.pl to create EXPORTS-API cache file</dd>
+<dd>usage: findUseProblems database is used in our perlcritic scripts to find missing/wrong perl package imports</dd>
+<dd>context: installation</dd>
+</dl>
+
+<dl>
+<dt>ep6 importHook</dt>
+<dd>calls DE_EPAGES/Trigger/Scripts/import.pl using selected file as input</dd>
+<dd>usage: use to import new hook definitions into the database</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>ep6 importObject</dt>
+<dd>calls DE_EPAGES/Object/Scripts/import.pl using selected file as input</dd>
+<dd>usage: use to import new object definitions into the database</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>ep6 importShopChildDependencies</dt>
+<dd>calls DE_EPAGES/Shop/Scripts/importShopChildDependencies.pl using selected file as input</dd>
+<dd>usage: use to import new shop child dependency information into the database</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>ep6 invalidateAllStyles</dt>
+<dd>calls DE_EPAGES/Design/Scripts/invalidateAllStyles.pl</dd>
+<dd>usage: use when SF-Style.StyleSheet.css file has changed, to re-create cached style information</dd>
+<dd>context: store</dd>
+</dl>
+
+<dl>
+<dt>ep6 listShopChildDependencies</dt>
+<dd>calls DE_EPAGES/Shop/Scripts/ListShopChildDependencies.pl</dd>
+<dd>usage: use to list ship child dependency information</dd>
+<dd>context: store</dd>
+</dl>
+
+<dl>
+<dt>ep6 PerlCritic</dt>
+<dd>calls DE_EPAGES/Core/Scripts/critic.pl using selected file or directory as input</dd>
+<dd>usage: use to check perlcritic compliance of your code. You can enter perlcritic.conf or perlcritic_hard.conf to choose from our two preset configurations.</dd>
+<dd>context: file/directory</dd>
+</dl>
+
+<dl>
+<dt>ep6 setAttribute</dt>
+<dd>calls DE_EPAGES/Object/Scripts/set.pl</dd>
+<dd>usage: use to set object attributes via command-line. Prompts for object path and attribute details</dd>
+<dd>context: object path</dd>
+</dl>
+
+<dl>
+<dt>ep6 setJSDebugLevel</dt>
+<dd>calls DE_EPAGES/Object/Scripts/set.pl on System object setting JSDebugLevel attribute</dd>
+<dd>usage: use to set javascript debug level for store database.</dd>
+<dd>context: store</dd>
+</dl>
+
+<dl>
+<dt>ep6 setMaxFeature</dt>
+<dd>calls DE_EPAGES/Shop/Scripts/setMaxFeature.pl</dd>
+<dd>usage: updates feature availability for one shop.</dd>
+<dd>context: shop</dd>
+</dl>
+
+<dl>
+<dt>ep6 setShopWizardFlag</dt>
+<dd>calls DE_EPAGES/Object/Scripts/set.pl</dd>
+<dd>usage: used to set ShopWizardFlag setting for one shop.</dd>
+<dd>context: shop</dd>
+</dl>
+
+<dl>
+<dt>ep6 StoreCacheReset</dt>
+<dd>calls DE_EPAGES/WebInterface/Scripts/StoreCacheReset.pl</dd>
+<dd>usage: used to reset object cache info (usually on shop object).</dd>
+<dd>context: shop</dd>
+</dl>
+
+<dl>
+<dt>make [target]</dt>
+<dd>generic make target</dd>
+<dd>usage: call with popup to specify make target.</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make coverage_report</dt>
+<dd>calls make coverage_report on cartridge</dd>
+<dd>usage: generates html coverage report for cartridge (run make test_coverage first)</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make generate</dt>
+<dd>calls make generate on cartridge</dd>
+<dd>usage: generates database model for cartridge</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make generage_merge</dt>
+<dd>calls make generage_merge on cartridge</dd>
+<dd>usage: generates database model for cartridge and merges into CVS (epages internal)</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make generage_update</dt>
+<dd>calls make generate_update on cartridge</dd>
+<dd>usage: generates database model for cartridge and merges into local directory (epages internal)</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make install</dt>
+<dd>calls make install on cartridge</dd>
+<dd>usage: installs cartridge on store</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make patch</dt>
+<dd>calls make patch on cartridge</dd>
+<dd>usage: runs patch cartridge process on store</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make register</dt>
+<dd>calls make register on cartridge</dd>
+<dd>usage: runs feature registration process on installation</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make restart</dt>
+<dd>calls make restart</dd>
+<dd>usage: restarts epages application servers (needs admin permissions)</dd>
+<dd>context: installation</dd>
+</dl>
+
+<dl>
+<dt>make uninstall</dt>
+<dd>calls make uninstall</dd>
+<dd>usage: uninstalls cartridge from store</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make uninstall install</dt>
+<dd>calls make uninstall install</dd>
+<dd>usage: uninstalls and installs cartridge from store</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make unregister</dt>
+<dd>calls make unregister on cartridge</dd>
+<dd>usage: removes feature registration from installation</dd>
+<dd>context: cartridge</dd>
+</dl>
+
+<dl>
+<dt>make test (Regression)</dt>
+<dd>calls make test from DE_EPAGES::Test cartridge</dd>
+<dd>usage: runs regression test suite to ensure overall consistency of epages installation</dd>
+<dd>context: store</dd>
+</dl>
+
+<dl>
+<dt>perlRun</dt>
+<dd>executes selected file</dd>
+<dd>usage: generic target to run a perl script or test case</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>perl -e</dt>
+<dd>evaulages single line of code</dd>
+<dd>usage: target to run a one-liner</dd>
+<dd>context: prompt</dd>
+</dl>
+
+<dl>
+<dt>perlProfile</dt>
+<dd>runs perl -DNYTProf on single file</dd>
+<dd>usage: runs perl script with profiling enabled</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>perlProfile Report</dt>
+<dd>generates html-report from previous perlProfile run</dd>
+<dd>usage: run this target after running perlProfile</dd>
+<dd>context: file</dd>
+</dl>
+
+<dl>
+<dt>RefactorPerlCritic (*)</dt>
+<dd>calls DE_EPAGES/Core/Scripts/refactorCritic.pl using selected file as input</dd>
+<dd>usage: use to refactor your perl code to comply to a specific perlcritic rule.</dd>
+<dd>context: file</dd>
+</dl>
+
+</dd>
+
 
 <p>After adding this project to your Eclipse workspace, you should see something like in this screenshot.</p>
 <p>
